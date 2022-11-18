@@ -1,0 +1,6 @@
+ext.pathMapper = [:]
+ext.pathMapper.put('C:/Users/egor6/AppData/Local/JetBrains/Toolbox/apps/IDEA-U/ch-0/222.4345.14/lib/external-system-rt.jar', '/mnt/c/Users/egor6/AppData/Local/JetBrains/Toolbox/apps/IDEA-U/ch-0/222.4345.14/lib/external-system-rt.jar')
+ext.pathMapper.put('<<target java executable path>>', '<<target java executable path>>')
+ext.pathMapper.put('C:/Users/egor6/IdeaProjects/Armtel', '/mnt/c/Users/egor6/IdeaProjects/Armtel')
+ext.pathMapper.put("<<target java executable path>>", '/usr/lib/jvm/java-18-openjdk-amd64/bin/java')
+ext.mapPath = { path -> pathMapper.get(path) ?: path }

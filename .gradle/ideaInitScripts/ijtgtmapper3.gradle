@@ -1,0 +1,5 @@
+ext.pathMapper = [:]
+ext.pathMapper.put('<<target java executable path>>', '<<target java executable path>>')
+ext.pathMapper.put('C:/Users/egor6/IdeaProjects/Armtel', '/mnt/c/Users/egor6/IdeaProjects/Armtel')
+ext.pathMapper.put("<<target java executable path>>", '/usr/lib/jvm/java-18-openjdk-amd64/bin/java')
+ext.mapPath = { path -> pathMapper.get(path) ?: path }
