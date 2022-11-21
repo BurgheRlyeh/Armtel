@@ -1,17 +1,44 @@
 package com.github.burgherlyeh;
 
-import com.github.burgherlyeh.model.HWLoader;
-import com.github.burgherlyeh.model.IPN_Config;
+import com.github.burgherlyeh.model.Model;
+import com.github.burgherlyeh.view.TableView;
 
 import java.io.IOException;
 import java.net.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Main {
-    public static void main(String[] args) throws InterruptedException, IOException {
-        Thread t = new Thread(new UDPMulticastClient());
-        t.start();
-        Thread.sleep(10000);
-        UDPMulticastClient.UDPMulticastServer.main();
+    public static void main(String[] args) {
+        var model = new Model();
+        var viewController = new TableView(model);
+
+        while (true) {
+            try {
+                Thread.sleep(1000);
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+            viewController.updateTableView();
+        }
+    }
+}
+
+class My {
+
+    List<Integer> list;
+
+    public My() {
+        list = new ArrayList<>();
+        list.add(1);
+        list.add(2);
+        list.add(3);
+        list.add(4);
+        list.add(5);
+    }
+
+    public List<Integer> getList() {
+        return list;
     }
 }
 
@@ -42,24 +69,6 @@ class UDPMulticastClient implements Runnable {
                 ex.printStackTrace();
             }
             System.out.println("\n");
-        }
-    }
-
-    static class UDPMulticastServer {
-        public static void sendUDPMessage(String message, String ipAddress, int port) throws IOException {
-            DatagramSocket socket = new DatagramSocket();
-            InetAddress group = InetAddress.getByName(ipAddress);
-            byte[] msg = message.getBytes();
-            DatagramPacket packet = new DatagramPacket(msg, msg.length, group, port);
-            socket.send(packet);
-            socket.close();
-        }
-
-        public static void main() throws IOException {
-            sendUDPMessage("This is a multicast message", "224.0.1.11", 21332);
-            sendUDPMessage("This is the second multicast message", "224.0.1.11", 21332);
-            sendUDPMessage("This is the third multicast message", "224.0.1.11", 21332);
-            sendUDPMessage("OK", "224.0.1.11", 21332);
         }
     }
 }

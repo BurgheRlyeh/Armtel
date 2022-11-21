@@ -1,6 +1,5 @@
 package com.github.burgherlyeh.model;
 
-// Device types
 public enum IpnDeviceType {
     DIS_IP2(201),
     DW_IP2(203),
@@ -35,9 +34,11 @@ public enum IpnDeviceType {
     }
 
     static public IpnDeviceType fromInt(int number) {
-        for (IpnDeviceType type : IpnDeviceType.values())
-            if (type.toInt() == number)
+        for (IpnDeviceType type : IpnDeviceType.values()) {
+            if (type.toInt() == number) {
                 return type;
+            }
+        }
         return unknown;
     }
 
